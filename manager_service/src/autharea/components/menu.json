@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Staff",
+    "icon": "bi-people-fill",
+    "children": [
+      {
+        "title": "New Staff",
+        "icon": "bi-person-add",
+        "path": "/manager/staff/create"
+      },
+      {
+        "title": "All Staff",
+        "icon": "bi-people-fill",
+        "path": "/manager/staff"
+      }
+    ]
+  },
+
+  {
+    "title": "Stocks",
+    "icon": "bi-cassette-fill",
+    "children": [
+      {
+        "title": "Inventory",
+        "icon": "bi-table",
+        "path": "/manager/stock-inventory"
+      },
+      {
+        "title": "Dispatched Stocks",
+        "icon": "bi-database",
+        "path": "/manager/dispatched-stocks"
+      }
+    ]
+  },
+  {
+    "title": "Booking",
+    "icon": "bi-kanban-fill",
+    "children": [
+      {
+        "title": "All Booking",
+        "icon": "bi-table",
+        "path": "/manager/bookings"
+      },
+      {
+        "title": "Booked Rooms",
+        "icon": "bi-database",
+        "path": "/manager/booked-rooms"
+      }
+    ]
+  },
+  {
+    "title": "Guests",
+    "icon": "bi-hexagon-half",
+    "path": "/manager/guests"
+  },
+  {
+    "title": "Expenses",
+    "icon": "bi-bricks",
+    "path": "/manager/expenses"
+  },
+  {
+    "title": "Restaurant",
+    "icon": "bi-grid-1x2-fill",
+    "path": "/manager/restaurant"
+  },
+  {
+    "title": "Bar",
+    "icon": "bi-fan",
+    "path": "/manager/bar"
+  },
+  {
+    "title": "Maintenance",
+    "icon": "bi-building-fill-gear",
+    "path": "/manager/maintenance"
+  },
+  {
+    "title": "Laundry",
+    "icon": "bi-calendar-fill",
+    "path": "/manager/laundry"
+  },
+
+  {
+    "title": "Change Password",
+    "icon": "bi-lock",
+    "path": "/manager/change-password"
+  },
+  {
+    "title": "Logout",
+    "icon": "bi-power",
+    "path": "/logout"
+  }
+]
