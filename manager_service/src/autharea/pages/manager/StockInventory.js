@@ -21,8 +21,8 @@ const StockInventory = () => {
   let total = 0;
   const { query, search } = useLocation();
   const params = new URLSearchParams(search).get("backUrl");
-
   const [dataSource, setDataSource] = useState([]);
+
   useEffect(async () => {
     try {
       const response =

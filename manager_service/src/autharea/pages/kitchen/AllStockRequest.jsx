@@ -10,6 +10,8 @@ import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { columns } from "../../components/dataSource/columnSource"
 import Moment from 'react-moment';
+
+
 const AllStockRequest = () => {
 
     const { query, search } = useLocation();
@@ -21,6 +23,8 @@ const AllStockRequest = () => {
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalData, setModalData] = useState([]);
     const [dataSource, setDataSource] = useState([]);
+
+
 
     const columns = [
         {

@@ -8,7 +8,6 @@ import { generateRamdom } from "../utils/Utils.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
 
 export const getStockDispatched = async (req, res, next) => {
-  let stockDispatched = [];
   try {
     const stockDispatched = await StockDispatches.find({ _id: req.params.id })
       .populate("stockId")
@@ -16,7 +15,7 @@ export const getStockDispatched = async (req, res, next) => {
       .select(" -__v -updatedAt")
       .sort({ createdAt: -1 });
 
-    if (stockDispatched.length == 0)
+    if (!stockDispatched)
       return res.status(208).json({ msg: "No Stock Dispatched Found" });
 
     return res.status(208).json(stockDispatched);
