@@ -4,7 +4,7 @@ services:
   front-end:
     container_name: frontend
     image: marble-arch-frontend
-    build: ./manager_service
+    build: ./my-app
     stdin_open: true
     ports:
       - 3000:80
