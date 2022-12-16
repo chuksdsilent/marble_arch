@@ -19,3 +19,5 @@ services:
       - 7500:7500
     networks:
       - marble-arch
+networks:
+  marble-arch: {}
