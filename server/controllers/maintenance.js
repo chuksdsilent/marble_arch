@@ -2,7 +2,7 @@ import { createError } from "../error.js";
 import validator from "express-validator";
 const { validationResult } = validator;
 import StockDispatches from "../models/StockDispatch.js";
-import Maintenance from "../models/maintenance.js";
+import Maintenance from "../models/Maintenance.js";
 import Stocks from "../models/Stocks.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
 
