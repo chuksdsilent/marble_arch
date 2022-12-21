@@ -30,17 +30,11 @@ export const index = async (req, res, next) => {
 export const getStockForDispatch = async (req, res, next) => {
   let stockDispatched;
   try {
-    stockDispatched = await StockDispatch.find({
-      department: "bar",
+    stockDispatched = await Stocks.find({
       quantity: { $gt: 0 },
     })
-      .populate("staffId", "-password")
-      .populate("stockId")
       .select("-__v -updatedAt")
       .sort({ createdAt: -1 });
-
-    if (!stockDispatched)
-      return res.status(208).json({ msg: "No Stock Found" });
 
     return res.status(208).json(stockDispatched);
   } catch (error) {

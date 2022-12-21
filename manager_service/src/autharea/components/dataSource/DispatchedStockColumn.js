@@ -32,14 +32,14 @@ export const columns = [
     key: "total",
     render: (_, { total }) => <>&#8358;{formatCurrency(total)}</>,
   },
-  {
-    title: "Received",
-    dataIndex: "received",
-    key: "received",
-    render: (_, { received }) => (
-      <>{received === "true" ? <i className="bi-check-lg"></i> : ""}</>
-    ),
-  },
+  // {
+  //   title: "Received",
+  //   dataIndex: "received",
+  //   key: "received",
+  //   render: (_, { received }) => (
+  //     <>{received === "true" ? <i className="bi-check-lg"></i> : ""}</>
+  //   ),
+  // },
 
   {
     title: "Date",
@@ -51,9 +51,9 @@ export const columns = [
       </>
     ),
   },
-  {
-    title: "Action",
-    dataIndex: "_id",
-    render: _id => <Link to={`/manager/stock-dispatched/${_id}`}>View</Link>,
-  },
+  // {
+  //   title: "Action",
+  //   dataIndex: "_id",
+  //   render: _id => <Link to={`/manager/stock-dispatched/${_id}`}>View</Link>,
+  // },
 ];

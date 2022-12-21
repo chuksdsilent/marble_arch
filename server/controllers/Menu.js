@@ -4,9 +4,9 @@ import Menu from "../models/Menu.js";
 import StockDispatch from "../models/StockDispatch.js";
 
 export const index = async (req, res, next) => {
+  console.log("The console");
   try {
     const menu = await Menu.find({
-      department: req.query.department,
       quantity: { $gt: 0 },
     })
       .select(" -__v")

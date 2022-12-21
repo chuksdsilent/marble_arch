@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 // import Cookies from 'js-cookie';
 const ProtectedRoutes = () => {
   const { currentUser } = useSelector(state => state.user);
-  const navigate = useNavigate();
   return (
     <>
       <>
@@ -15,7 +14,7 @@ const ProtectedRoutes = () => {
         )}
       </>
       <>
-        {currentUser && currentUser.data.role == "manager" ? (
+        {currentUser && currentUser.data.role === "manager" ? (
           <Outlet />
         ) : (
           <Navigate to="/manager/login?msg=Unauthorized Access" />

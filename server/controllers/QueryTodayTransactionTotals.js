@@ -42,7 +42,8 @@ export const getTodayRestaurant = async (req, res, next) => {
 };
 export const getTodayBar = async (req, res, next) => {
   try {
-    let todayBar = await Bar.aggregate(pipeline);
+    let todayBar = await Bar.aggregate(stockPipeline);
+    console.log("bar is ", todayBar);
     if (todayBar.length === 0) return (todayBar = [{ _id: null, total: 0 }]);
 
     return todayBar;
@@ -84,12 +85,17 @@ export const getTodayStockDispatched = async (req, res, next) => {
   }
 };
 export const getTodayGuests = async (req, res, next) => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   try {
-    let todayGuests = await GuestInformation.aggregate(stockPipeline);
+    let todayGuests = await GuestInformation.countDocuments({
+      createdAt: { $gte: today },
+    });
+
     if (todayGuests.length === 0)
       return (todayGuests = [{ _id: null, total: 0 }]);
 
-    return todayGuests;
+    return (todayGuests = [{ _id: null, total: todayGuests }]);
   } catch (error) {
     console.log("The error is ", error);
   }

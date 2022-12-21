@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { success, info } from '../../../utils/Notifications'
 import { FormStyles } from "../../styles/FormStyle"
 import { useSelector } from 'react-redux';
+import { MenuServices } from '../../../services/MenuService';
 
 
 const NewOrder = () => {
@@ -28,7 +29,7 @@ const NewOrder = () => {
     useEffect(async () => {
         try {
             if (currentUser.data.role == "restaurant")
-                response = await RestaurantServices.items(`department=${currentUser.data.role}`)
+                response = await MenuServices.allMenu();
             else
                 response = await BarServices.items(`department=${currentUser.data.role}`)
             setDataSource(response.data)
@@ -98,7 +99,7 @@ const NewOrder = () => {
                                                 rules={[{ required: true, message: "Menu Item is required" }]}>
                                                 <Select placeholder="Select Menu">
                                                     {dataSource && dataSource.map(data => (
-                                                        <Select.Option key={data._id} value={data.stockId._id}>{data.stockId.name}</Select.Option>
+                                                        <Select.Option key={data._id} value={data._id}>{data.name}</Select.Option>
                                                     ))}
                                                 </Select>
                                             </Form.Item>

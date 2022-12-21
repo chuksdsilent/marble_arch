@@ -6,12 +6,12 @@ import { useLocation } from 'react-router';
 
 const Guests = () => {
 
-    const { query, search } = useLocation();
+    const { search } = useLocation();
     const params = new URLSearchParams(search).get('backUrl');
     const [dataSource, setDataSource] = useState([]);
     useEffect(async () => {
         try {
-            const response = (params == "today") ? await UserServices.todayUsers() : await UserServices.getGuests();
+            const response = (params === "today") ? await UserServices.todayUsers() : await UserServices.getGuests();
             console.log(response);
             setDataSource(response.data)
             console.log(response.data)

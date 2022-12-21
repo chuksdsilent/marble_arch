@@ -3,14 +3,21 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Pusher from "pusher-js";
 import { NotificationStyles } from '../styles/NotificationStyles';
+import { useDispatch } from 'react-redux';
+import { slideSideBar } from "../../noautharea/redux/UserSlice";
 
 
 
-const ManagerHeader = () => {
+const ManagerHeader = ({ setShowSideBar }) => {
+    const dispatch = useDispatch();
     const { currentUser } = useSelector(state => state.user)
     const [notification, setNotification] = useState({})
     const [notificationCount, setNotificationCount] = useState(0)
 
+    const openSideBar = () => {
+        dispatch(slideSideBar({ isSideBarOpen: true }));
+
+    }
     // Pusher.logToConsole = true;
 
     // var pusher = new Pusher("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", {
@@ -44,10 +51,11 @@ const ManagerHeader = () => {
                             <span className='notification-count'>{notificationCount}</span>
                         </div>
                     </NotificationStyles> */}
-                    <div>
+                    <div className='name-placer'>
                         <span style={{ marginRight: "1rem" }}>{currentUser.data.surname} {currentUser.data.firstName}</span>
                         <i className="bi-person-circle"></i>
                     </div>
+                    <i className="bi-list" onClick={openSideBar}></i>
                 </Row>
             </Col>
         </Row>

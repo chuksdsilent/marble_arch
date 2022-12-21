@@ -65,12 +65,12 @@ const Bookings = () => {
         },
 
         {
-            title: "Date",
-            dataIndex: "createdAt",
-            key: "createdAt",
-            render: (_, { createdAt }) => (
+            title: "Phone",
+            dataIndex: "guestId",
+            key: "guestId",
+            render: (_, { guestId }) => (
                 <>
-                    <Moment format="D MMM, YY">{createdAt}</Moment>
+                    {guestId.phone}
                 </>
             ),
         },
@@ -90,7 +90,7 @@ const Bookings = () => {
     ];
 
     console.log(columns)
-    const { query, search } = useLocation();
+    const { search } = useLocation();
     const params = new URLSearchParams(search).get('backUrl');
     const { currentUser } = useSelector(state => state.user)
     let total = 0;
@@ -165,13 +165,13 @@ const Bookings = () => {
             <h3>{(params === "today") ? "Today" : "All"} Reservations</h3>
             <Divider />
             <Row justify="start">
-                <Col span={20} >
+                <Col lg={{ span: 20 }} >
                     <Form
                         name="basic"
                         onFinish={onFinish}
                     >
                         <Row>
-                            <Col span={6}>
+                            <Col span={10} lg={{ span: 7 }}>
                                 <Form.Item
                                     label="Start Date"
                                     name="startDate"
@@ -179,7 +179,7 @@ const Bookings = () => {
                                     <DatePicker format='YYYY-MM-DD' />
                                 </Form.Item>
                             </Col>
-                            <Col span={6}>
+                            <Col span={10} lg={{ span: 7 }}>
                                 <Form.Item
                                     label="End Date"
                                     name="endDate"
@@ -187,7 +187,7 @@ const Bookings = () => {
                                     <DatePicker format='YYYY-MM-DD' />
                                 </Form.Item>
                             </Col>
-                            <Col span={7}>
+                            <Col span={10} lg={{ span: 7 }}>
                                 <Form.Item >
                                     <Button type="primary" htmlType="submit">
                                         Search
@@ -197,7 +197,7 @@ const Bookings = () => {
                         </Row>
                     </Form>
                 </Col>
-                <Col span={4}>
+                <Col lg={{ span: 4 }} xs={{ order: 1 }}>
                     <TotalCardStyles>
                         <div>
                             Total:

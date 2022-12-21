@@ -6,23 +6,20 @@ import {
     Form,
     Input,
     Button,
-    Select,
     Space
 } from 'antd';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { success, info } from '../../../utils/Notifications'
 import { FormStyles } from "../../styles/FormStyle"
 import { useSelector } from 'react-redux';
 import { StoreKeeperServices } from '../../../services/StoreKeeperService';
 
 const NewStock = () => {
-    let values;
+
     const [submitting, setSubmitting] = useState(false)
     const [form] = Form.useForm();
-    const { currentUser } = useSelector(state => state.user)
-    const [dataSource, setDataSource] = useState([]);
     const [reservation, setReservation] = useState([]);
-    const [submitBtn, setSubmitBtn] = useState(false);
+
 
     const onFinish = async (values) => {
         setSubmitting(true)

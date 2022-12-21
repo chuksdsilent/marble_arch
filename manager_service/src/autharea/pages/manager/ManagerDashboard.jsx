@@ -21,8 +21,8 @@ const ManagerDashboard = () => {
             <h3>Overview</h3>
             <Row gutter={[16, 16]}>
                 {dataSource ? dataSource.map((data, index) => (<Card data={data} id={index} />)) : <Spin size="large" />}
-
             </Row>
+
         </div >
     )
 }

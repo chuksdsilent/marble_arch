@@ -4,22 +4,19 @@ import { Row, Col, Table, Button, Divider, Skeleton, Form, DatePicker, Modal } f
 import { TotalCardStyles } from '../../styles/TotalCardStyles';
 import { formatCurrency } from '../../../utils/FormatCurrency';
 import moment from 'moment';
-import { columns } from '../../components/dataSource/RestaurantDataSource';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 import Moment from "react-moment";
-import { Link } from 'react-router-dom';
 const Restaurant = () => {
-    const { query, search } = useLocation();
+    const { search } = useLocation();
     const params = new URLSearchParams(search).get('backUrl');
     let total = 0;
-    let response;
     const { currentUser } = useSelector(state => state.user)
     const [dataSource, setDataSource] = useState([]);
     const [open, setOpen] = useState(false);
     const [modalData, setModalData] = useState([]);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
+
 
     const menuColumns = [
         {
@@ -50,7 +47,7 @@ const Restaurant = () => {
             render: record => (
 
                 <>
-                    {!record.kitchen_received ? currentUser.data.role == "kitchen" ?
+                    {!record.kitchen_received ? currentUser.data.role === "kitchen" ?
                         <Button type="primary" onClick={() => showModal(record)}>
                             Delivered
                         </Button> : "" : <i className='bi-check-lg'></i>}
@@ -86,9 +83,10 @@ const Restaurant = () => {
         setOpen(false);
     };
 
+    let response;
     useEffect(async () => {
         try {
-            if (currentUser.data.role == "restaurant") {
+            if (currentUser.data.role === "restaurant") {
                 response = await RestaurantServices.todayRestaurant();
             } else {
                 response = (params === "today") ? await RestaurantServices.todayRestaurant() : await RestaurantServices.allRestaurant()
@@ -167,9 +165,9 @@ const Restaurant = () => {
                             &#8358;
                             {
                                 dataSource && dataSource.map((data) => {
-                                    if (currentUser.data.role == "kitchen" && data.kitchen_received == true) {
+                                    if (currentUser.data.role === "kitchen" && data.kitchen_received == true) {
                                         total += data.total
-                                    } else if (currentUser.data.role == "restaurant") {
+                                    } else if (currentUser.data.role === "restaurant") {
                                         total += data.total
                                     }
                                 })

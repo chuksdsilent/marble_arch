@@ -109,9 +109,9 @@ export const create = async (req, res, next) => {
     let user_menus = [];
     let valid = true;
     // req.body.menus.map(async (menu, index) =>
-    for (let [index, stock] of req.body.menus.entries()) {
+    for (let [index, stock] of req.body.stocks.entries()) {
       const menus = await Menu.findOne({
-        _id: req.body.menus[index].menuId,
+        _id: stock.stockId,
       }).select("-__v -updatedAt");
 
       if (!menus) {
@@ -119,16 +119,17 @@ export const create = async (req, res, next) => {
         return res.status(404).json({ msg: "Order Not Found." });
       }
 
-      let total = menus.price * req.body.menus[index].qty;
-
+      let total = stock.price * stock.quantity;
+      console.log("total is ", stock.quantity);
       user_menus.push({
-        ...req.body.menus[index],
+        ...stock,
         staffId: req.user.id,
         total: total,
-        quantity: req.body.menus[index].qty,
+        quantity: stock.quantity,
         trx_id,
         price: menus.price,
         total,
+        menuId: stock.stockId,
       });
     }
 

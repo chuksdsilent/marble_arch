@@ -4,6 +4,7 @@ const initialState = {
   currentUser: null,
   isLoading: false,
   isError: false,
+  isSideBarOpen: false,
 };
 
 export const userSlice = createSlice({
@@ -21,17 +22,16 @@ export const userSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     },
+    slideSideBar: (state, action) => {
+      state.isSideBarOpen = action.payload.isSideBarOpen;
+    },
     logout: state => {
       return initialState;
     },
   },
 });
 
-export const {
-  loginStart,
-  loginSuccess,
-  loginFailure,
-  logout,
-} = userSlice.actions;
+export const { slideSideBar, loginStart, loginSuccess, loginFailure, logout } =
+  userSlice.actions;
 
 export default userSlice.reducer;
