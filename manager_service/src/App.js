@@ -57,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/manager/login" element={<Manager />} />
         <Route path="/receptionist/login" element={<Receptionist />} />
+        <Route path="/" exact element={<Receptionist />} />
       </Routes>
       <Routes>
         /*******************************Manager************************ */

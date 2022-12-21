@@ -48,6 +48,17 @@ export const LayoutStyles = styled.div`
 
   .hide-side-bar {
     // Small devices (landscape phones, 576px and up)
+    overflow: auto;
+    height: 100vh;
+    background-color: "#031737";
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-top: 5rem;
+    z-index: 1500;
     @media (max-width: 576px) {
       min-width: 0px !important;
       max-width: 0px !important;
@@ -57,7 +68,9 @@ export const LayoutStyles = styled.div`
 
   .cancel {
     // Small devices (landscape phones, 576px and up)
+    display: none;
     @media (max-width: 576px) {
+      display: block;
       position: absolute;
       top: 20px;
       right: 20px;
@@ -65,7 +78,9 @@ export const LayoutStyles = styled.div`
       cursor: pointer;
     }
   }
-
+  .ant-layout-side {
+    position: fixed !important;
+  }
   .show-side-bar {
     overflow: auto;
     height: 100vh;

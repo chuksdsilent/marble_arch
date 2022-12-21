@@ -15,7 +15,7 @@ const ManagerLayout = (props) => {
 
     const { Header, Sider, Content } = Layout;
     const { isSideBarOpen } = useSelector(state => state.user)
-    console.log(isSideBarOpen)
+
     return (
         <>
             <LayoutStyles>
