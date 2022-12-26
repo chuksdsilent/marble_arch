@@ -8,11 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 import Theme from "./assets/styles/Theme";
 import { Provider } from "react-redux";
 import "antd/dist/antd.css";
-import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { persistor, store } from "./noautharea/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 // import HTTP request interceptor
 
 // instantiate interceptor
@@ -21,13 +20,13 @@ new Interceptor().interceptResponse();
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <Theme>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
       </Theme>
-    </BrowserRouter>
+    </Router>
   </Provider>,
 
   document.getElementById("root")
