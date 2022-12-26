@@ -20,6 +20,8 @@ import kitchenRoutes from "./routes/kitchen.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+app.use(cors({ origin: true, credentials: true }));
+
 const app = express();
 const port = 7500;
 let url_prefix = "";
@@ -28,7 +30,6 @@ const baseUrl = "/api";
 dotenv.config();
 
 app.use(express.json());
-app.use(cors({ origin: true, credentials: true }));
 const connectToDDB = () => {
   mongoose
     .connect(process.env.MONGO, { useNewUrlParser: true })
