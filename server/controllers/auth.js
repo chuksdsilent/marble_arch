@@ -28,7 +28,7 @@ export const signup = async (req, res, next) => {
       if (user.length > 0)
         return res.status(422).json({ msg: "Staff already exist..." });
       const salt = bcrypt.genSaltSync(10);
-      const password = bcrypt.hashSync(process.env.ACCESS_TOKEN, salt);
+      const password = bcrypt.hashSync(123456, salt);
       const newUser = new User({ ...req.body, password });
 
       await newUser.save();
