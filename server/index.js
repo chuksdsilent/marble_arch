@@ -20,8 +20,6 @@ import kitchenRoutes from "./routes/kitchen.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-app.use(cors({ origin: true, credentials: true }));
-
 const app = express();
 const port = 7500;
 let url_prefix = "";
@@ -29,6 +27,7 @@ const baseUrl = "/api";
 
 dotenv.config();
 
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 const connectToDDB = () => {
   mongoose
@@ -98,6 +97,19 @@ app.use(`${baseUrl}/expenses`, expensesRoutes);
 app.use(`${baseUrl}/`, kitchenRoutes);
 
 app.use(`/api/expenses`, expensesRoutes);
+
+// Serve frontend
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../manager_service/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "manager_service", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

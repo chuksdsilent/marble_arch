@@ -56,5 +56,5 @@
     ]
   },
   "homepage": ".",
-  "proxy": "http://3.87.92.0:6500/api/"
+  "proxy": "http:localhost:7500/api/"
 }
