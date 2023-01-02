@@ -2,7 +2,7 @@ import { createError } from "../error.js";
 import validator from "express-validator";
 const { validationResult } = validator;
 import StockDispatches from "../models/StockDispatch.js";
-import Laundry from "../models/Laundry.js";
+import Laundry from "../models/laundry.js";
 import Stocks from "../models/Stocks.js";
 
 export const acceptStockSent = async (req, res, next) => {
