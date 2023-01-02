@@ -18,6 +18,7 @@ export const getUser = async (req, res, next) => {
 };
 export const signup = async (req, res, next) => {
   const errors = validationResult(req);
+  console.log("checked...");
   if (!errors.isEmpty()) {
     return res.status(422).jsonp(errors.array());
   } else {
@@ -28,7 +29,7 @@ export const signup = async (req, res, next) => {
       if (user.length > 0)
         return res.status(422).json({ msg: "Staff already exist..." });
       const salt = bcrypt.genSaltSync(10);
-      const password = bcrypt.hashSync(123456, salt);
+      const password = bcrypt.hashSync("123456", salt);
       const newUser = new User({ ...req.body, password });
 
       await newUser.save();
@@ -55,8 +56,8 @@ export const signin = async (req, res, next) => {
       { id: user._id, role: user.role },
       process.env.JWT_TOKEN
     );
-
-    const { password, ...others } = user._doc;
+    let { password, ...others } = user._doc;
+    others = { ...others, token };
 
     res
       .cookie("access_token", token, {

@@ -107,7 +107,7 @@ export const create = async (req, res, next) => {
     let qtyExceeded = false;
     for (let [index, order] of req.body.stocks.entries()) {
       const stock = await StockDispatches.findOne({
-        stockId: order.stockId,
+        _id: order.stockId,
       }).populate("stockId");
       if (!stock) return res.status(404).json({ msg: "Stock Not Found" });
 

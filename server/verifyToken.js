@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 import { createError } from "./error.js";
 
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token =
+    req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -13,7 +14,7 @@ export const verifyToken = (req, res, next) => {
 };
 
 export const verifyManagerToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -24,7 +25,8 @@ export const verifyManagerToken = (req, res, next) => {
 };
 
 export const verifyBarToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token =
+    req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -37,7 +39,7 @@ export const verifyBarToken = (req, res, next) => {
 };
 
 export const verifyLaundryToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -50,7 +52,7 @@ export const verifyLaundryToken = (req, res, next) => {
 };
 
 export const verifyMaintenanceToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -63,7 +65,7 @@ export const verifyMaintenanceToken = (req, res, next) => {
 };
 
 export const verifyRestaurantToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -76,7 +78,7 @@ export const verifyRestaurantToken = (req, res, next) => {
 };
 
 export const verifyKitchenToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
@@ -102,7 +104,7 @@ export const verifyReceptionistToken = (req, res, next) => {
 };
 
 export const verifyStoreKeeperToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {

@@ -55,7 +55,7 @@ export const stockDispatchedForDepartments = async (req, res, next) => {
     })
       .populate("stockId")
       .populate("staffId")
-      .select(" -__v -updatedAt")
+      .select(" -__v -password -updatedAt")
       .sort({ createdAt: -1 });
 
     return res.status(200).json(stockDispatched);
