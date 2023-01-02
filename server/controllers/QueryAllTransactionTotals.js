@@ -7,8 +7,8 @@ import Expenses from "../models/Expenses.js";
 import { allPipeline } from "../GlobalVarialbles.js";
 import Restaurant from "../models/Restaurant.js";
 import Bar from "../models/Bar.js";
-import Laundry from "../models/Laundry.js";
-import Maintenance from "../models/Maintenance.js";
+import Laundry from "../models/laundry.js";
+import Maintenance from "../models/maintenance.js";
 export const getMaintenance = async (req, res, next) => {
   try {
     let maintenance = await Maintenance.aggregate(allPipeline);

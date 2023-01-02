@@ -19,6 +19,8 @@ import barRoutes from "./routes/bar.js";
 import kitchenRoutes from "./routes/kitchen.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import * as path from 'path';
+import url from 'url';
 
 const app = express();
 const port = 7500;
@@ -26,6 +28,8 @@ let url_prefix = "";
 const baseUrl = "/api";
 
 dotenv.config();
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
@@ -98,13 +102,14 @@ app.use(`${baseUrl}/`, kitchenRoutes);
 
 app.use(`/api/expenses`, expensesRoutes);
 
+console.log("env ", process.env.NODE_ENV);
 // Serve frontend
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../manager_service/build")));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
   app.get("*", (req, res) =>
     res.sendFile(
-      path.resolve(__dirname, "../", "manager_service", "build", "index.html")
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
     )
   );
 } else {

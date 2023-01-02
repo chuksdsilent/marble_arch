@@ -5,8 +5,8 @@ import StockDispatch from "../models/StockDispatch.js";
 import GuestInformation from "../models/GuestInformation.js";
 import Bar from "../models/Bar.js";
 import Restaurant from "../models/Restaurant.js";
-import Laundry from "../models/Laundry.js";
-import Maintenance from "../models/Maintenance.js";
+import Laundry from "../models/laundry.js";
+import Maintenance from "../models/maintenance.js";
 export const getTodayMaintenance = async (req, res, next) => {
   try {
     let todayMaintenance = await Maintenance.aggregate(pipeline);
