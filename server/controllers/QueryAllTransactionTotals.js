@@ -23,7 +23,7 @@ export const getMaintenance = async (req, res, next) => {
 export const getLaundry = async (req, res, next) => {
   try {
     let laundry = await Laundry.aggregate(allPipeline);
-    if (laundry.length === 0) return (laundry = [{ _id: null, price: 0 }]);
+    if (laundry.length === 0) return (laundry = [{ _id: null, total: 0 }]);
     return laundry;
   } catch (error) {
     console.log("The error is ", error);
@@ -133,8 +133,8 @@ export const getGuests = async (req, res, next) => {
         $group: { _id: null, total: { $count: {} } },
       },
     ]);
-    console.log("guest is ", guests);
-    // if (guests.length === 0) return (guests = [{ _id: null, total: 0 }]);
+
+    if (guests.length === 0) return (guests = [{ _id: null, total: 0 }]);
 
     return guests;
   } catch (error) {
