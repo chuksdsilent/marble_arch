@@ -51,7 +51,7 @@ export const getBar = async (req, res, next) => {
 };
 export const getStockDispatched = async (req, res, next) => {
   try {
-    const stockDispatched = await StockDispatches.aggregate([
+    let stockDispatched = await StockDispatches.aggregate([
       {
         $group: { _id: null, total: { $sum: "$total" } },
       },
@@ -117,7 +117,7 @@ export const getExpenses = async (req, res, next) => {
         $group: { _id: null, amount: { $sum: "$amount" } },
       },
     ]);
-    console.log(expenses);
+
     if (expenses.length === 0) return (expenses = [{ _id: null, amount: 0 }]);
 
     return expenses;
