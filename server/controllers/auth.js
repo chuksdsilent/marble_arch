@@ -18,7 +18,6 @@ export const getUser = async (req, res, next) => {
 };
 export const signup = async (req, res, next) => {
   const errors = validationResult(req);
-  console.log("checked...");
   if (!errors.isEmpty()) {
     return res.status(422).jsonp(errors.array());
   } else {
@@ -46,6 +45,7 @@ export const signin = async (req, res, next) => {
     const user = await User.findOne({
       $or: [{ phone: req.body.phone }, { username: req.body.username }],
     });
+    console.log("checking..");
     if (!user) return res.status(401).json({ msg: "Wrong Credentials" });
 
     const isCorrect = bcrypt.compareSync(req.body.password, user.password); // true
