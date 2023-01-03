@@ -51,6 +51,7 @@ const UserSchema = new mongoose.Schema(
         "laundry",
         "restaurant",
         "maintenance",
+        "manager",
       ],
       required: true,
       default: false,
