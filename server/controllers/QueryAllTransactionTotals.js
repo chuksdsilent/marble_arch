@@ -133,7 +133,8 @@ export const getGuests = async (req, res, next) => {
         $group: { _id: null, total: { $count: {} } },
       },
     ]);
-    if (guests.length === 0) return (guests = [{ _id: null, total: 0 }]);
+    console.log("guest is ", guests);
+    // if (guests.length === 0) return (guests = [{ _id: null, total: 0 }]);
 
     return guests;
   } catch (error) {
