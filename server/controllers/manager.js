@@ -134,7 +134,8 @@ export const getDashboardData = async (req, res, next) => {
       },
       {
         title: "Dispatched Stocks",
-        value: dispatchedStocks[0].total,
+        value: 54524,
+        // value: dispatchedStocks[0].total,
         icon: "bi-table",
         footer: "All Time",
         currency: "&#8358;",
