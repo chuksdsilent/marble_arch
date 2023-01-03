@@ -67,7 +67,7 @@ export const getStockDispatched = async (req, res, next) => {
 
 export const getBookings = async (req, res, next) => {
   try {
-    const bookings = await Booking.aggregate([
+    let bookings = await Booking.aggregate([
       {
         $group: { _id: null, total: { $sum: "$total" } },
       },
@@ -82,7 +82,7 @@ export const getBookings = async (req, res, next) => {
 
 export const getStocks = async (req, res, next) => {
   try {
-    const stocks = await Stocks.aggregate([
+    let stocks = await Stocks.aggregate([
       {
         $group: { _id: null, total: { $sum: "$total" } },
       },
@@ -97,7 +97,7 @@ export const getStocks = async (req, res, next) => {
 
 export const getUsers = async (req, res, next) => {
   try {
-    const users = await User.aggregate([
+    let users = await User.aggregate([
       {
         $group: { _id: null, total: { $count: {} } },
       },
@@ -112,7 +112,7 @@ export const getUsers = async (req, res, next) => {
 
 export const getExpenses = async (req, res, next) => {
   try {
-    const expenses = await Expenses.aggregate([
+    let expenses = await Expenses.aggregate([
       {
         $group: { _id: null, amount: { $sum: "$amount" } },
       },
@@ -128,7 +128,7 @@ export const getExpenses = async (req, res, next) => {
 
 export const getGuests = async (req, res, next) => {
   try {
-    const guests = await GuestInformation.aggregate([
+    let guests = await GuestInformation.aggregate([
       {
         $group: { _id: null, total: { $count: {} } },
       },
