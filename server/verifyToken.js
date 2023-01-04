@@ -91,7 +91,7 @@ export const verifyKitchenToken = (req, res, next) => {
 };
 
 export const verifyReceptionistToken = (req, res, next) => {
-  const token = req.cookies.access_token;
+  req.cookies.access_token || req.headers.authorization.split(" ")[1];
   if (!token) return next(createError(401, "Unauthorized Access"));
 
   jwt.verify(token, process.env.JWT_TOKEN, (err, user) => {
