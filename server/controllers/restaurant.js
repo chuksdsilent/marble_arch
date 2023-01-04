@@ -111,7 +111,7 @@ export const create = async (req, res, next) => {
     // req.body.menus.map(async (menu, index) =>
     for (let [index, stock] of req.body.stocks.entries()) {
       const menus = await Menu.findOne({
-        _id: stock.stockId,
+        _id: stock.menuId,
       }).select("-__v -updatedAt");
 
       if (!menus) {
@@ -129,7 +129,7 @@ export const create = async (req, res, next) => {
         trx_id,
         price: menus.price,
         total,
-        menuId: stock.stockId,
+        menuId: stock.menuId,
       });
     }
 

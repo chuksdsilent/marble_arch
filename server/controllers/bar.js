@@ -113,8 +113,9 @@ export const create = async (req, res, next) => {
       if (!stock) return res.status(404).json({ msg: "Stock Not Found" });
 
       let total = order.price * order.quantity;
-
-      if (order.quantity > stock.quantity) {
+      console.log("order qty is ", order.quantity);
+      console.log("stock qty is ", stock.quantity);
+      if (Number(order.quantity) > Number(stock.quantity)) {
         return res.status(422).json({
           msg: `Quantity of ${stock.stockId.name} is greater than what we have in database`,
         });

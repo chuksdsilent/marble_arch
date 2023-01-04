@@ -24,6 +24,7 @@ import {
   stockDispatched,
   searchStockDispatched,
   getStockDispatched,
+  stockDispatchedForDepartments,
 } from "../controllers/StockDispatch.js";
 import { getExpenses } from "../controllers/expenses.js";
 import { usedStocks } from "../controllers/maintenance.js";
@@ -58,6 +59,11 @@ router.put("/staffs/change-role/:id", verifyToken, changeStaffRole);
 router.put("/staffs/suspend/:id", verifyToken, suspendStaffs);
 router.put("/staffs/unsuspend/:id", verifyToken, unSuspendStaffs);
 router.get("/stock-dispatched", verifyToken, stockDispatched);
+router.get(
+  "/stocks-for-department",
+  verifyToken,
+  stockDispatchedForDepartments
+);
 router.get("/expenses", verifyToken, getExpenses);
 
 router.post(
