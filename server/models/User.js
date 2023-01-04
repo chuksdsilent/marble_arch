@@ -48,6 +48,7 @@ const UserSchema = new mongoose.Schema(
         "receptionist",
         "store-keeper",
         "bar",
+        "kitchen",
         "laundry",
         "restaurant",
         "maintenance",
