@@ -9,6 +9,7 @@ import StockDispatches from "../models/StockDispatch.js";
 import BarItems from "../models/BarItems.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
 import Menu from "../models/Menu.js";
+import Stocks from "../models/Stocks.js";
 
 export const searchBarOrders = async (req, res, next) => {
   let barOrders = [];
@@ -107,7 +108,7 @@ export const create = async (req, res, next) => {
     let qtyExceeded = false;
     for (let [index, order] of req.body.stocks.entries()) {
       const stock = await StockDispatches.findOne({
-        _id: order.stockId,
+        _id: order.dispatchId,
       }).populate("stockId");
       if (!stock) return res.status(404).json({ msg: "Stock Not Found" });
 
@@ -118,6 +119,9 @@ export const create = async (req, res, next) => {
           msg: `Quantity of ${stock.stockId.name} is greater than what we have in database`,
         });
       }
+
+      const barStocks = await Stocks.findOne({ _id: stock.stockId });
+      if (!barStocks) return res.status(404).json({ msg: "Stock Not Found" });
 
       let newQty = stock.quantity - order.quantity;
       let newTotal = newQty * stock.price;
@@ -133,6 +137,7 @@ export const create = async (req, res, next) => {
       user_orders.push({
         ...order,
         staffId: req.user.id,
+        stockId: barStocks._id,
         total,
         trx_id,
         price: order.price,

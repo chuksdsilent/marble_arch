@@ -12,6 +12,11 @@ const BarSchema = new mongoose.Schema(
       ref: "Stocks",
       required: true,
     },
+    dispatchId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "StockDispatches",
+      required: true,
+    },
     trx_id: {
       type: String,
       required: true,
