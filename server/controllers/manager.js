@@ -91,14 +91,14 @@ export const getDashboardData = async (req, res, next) => {
         currency: "&#8358;",
         url: "/manager/bar",
       },
-      // {
-      //   title: "Laundry",
-      //   value: todayLaundry[0].total,
-      //   icon: "bi-calendar-fill",
-      //   footer: "Today",
-      //   currency: "&#8358;",
-      //   url: "/manager/laundry",
-      // },
+      {
+        title: "Laundry",
+        value: todayLaundry[0].total,
+        icon: "bi-calendar-fill",
+        footer: "Today",
+        currency: "&#8358;",
+        url: "/manager/laundry",
+      },
       // {
       //   title: "Maintenance",
       //   value: todayMaintenance[0].total,
