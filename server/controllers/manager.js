@@ -59,14 +59,14 @@ export const getDashboardData = async (req, res, next) => {
         currency: "&#8358;",
         url: "/manager/bookings",
       },
-      // {
-      //   title: "Stocks",
-      //   value: todayStock[0].total,
-      //   icon: "bi-cassette-fill",
-      //   footer: "Today",
-      //   currency: "&#8358;",
-      //   url: "/manager/stock-inventory",
-      // },
+      {
+        title: "Stocks",
+        value: todayStock[0].total,
+        icon: "bi-cassette-fill",
+        footer: "Today",
+        currency: "&#8358;",
+        url: "/manager/stock-inventory",
+      },
       // {
       //   title: "Stock Dispatched",
       //   value: todayStockDispatched[0].total,
