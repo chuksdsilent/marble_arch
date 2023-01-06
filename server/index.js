@@ -43,7 +43,12 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.use(cors({ origin: "true", credentials: true }));
+app.use(
+  cors({
+    origin: "http://ec2-23-23-146-104.compute-1.amazonaws.com:7500",
+    credentials: true,
+  })
+);
 app.use(express.json());
 const connectToDDB = () => {
   mongoose
