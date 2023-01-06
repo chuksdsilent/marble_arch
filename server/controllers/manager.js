@@ -181,14 +181,14 @@ export const getDashboardData = async (req, res, next) => {
         url: "/manager/expenses",
       },
 
-      // {
-      //   title: "Guests",
-      //   value: guests[0].total,
-      //   icon: "bi-hexagon-half",
-      //   footer: "All Time",
-      //   currency: "",
-      //   url: "/manager/guests",
-      // },
+      {
+        title: "Guests",
+        value: guests[0].total,
+        icon: "bi-hexagon-half",
+        footer: "All Time",
+        currency: "",
+        url: "/manager/guests",
+      },
       // {
       //   title: "Staff",
       //   value: users[0].total,
