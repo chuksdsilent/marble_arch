@@ -116,14 +116,14 @@ export const getDashboardData = async (req, res, next) => {
         url: "/manager/guests",
       },
 
-      // {
-      //   title: "Bookings",
-      //   value: bookings[0].total,
-      //   icon: "bi-kanban-fill",
-      //   footer: "All Time",
-      //   currency: "&#8358;",
-      //   url: "/manager/bookings",
-      // },
+      {
+        title: "Bookings",
+        value: bookings[0].total,
+        icon: "bi-kanban-fill",
+        footer: "All Time",
+        currency: "&#8358;",
+        url: "/manager/bookings",
+      },
       // {
       //   title: "Stocks",
       //   value: dashboardStocks[0].total,
