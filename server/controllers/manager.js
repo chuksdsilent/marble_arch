@@ -189,13 +189,13 @@ export const getDashboardData = async (req, res, next) => {
         currency: "",
         url: "/manager/guests",
       },
-      // {
-      //   title: "Staff",
-      //   value: users[0].total,
-      //   icon: "bi-people-fill",
-      //   footer: "All Time",
-      //   currency: "",
-      // },
+      {
+        title: "Staff",
+        value: users[0].total,
+        icon: "bi-people-fill",
+        footer: "All Time",
+        currency: "",
+      },
     ];
     return res.status(200).json(data);
   } catch (error) {
