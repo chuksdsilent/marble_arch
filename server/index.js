@@ -19,8 +19,8 @@ import barRoutes from "./routes/bar.js";
 import kitchenRoutes from "./routes/kitchen.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import * as path from 'path';
-import url from 'url';
+import * as path from "path";
+import url from "url";
 
 const app = express();
 const port = 7500;
@@ -31,6 +31,18 @@ dotenv.config();
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, 'Content-Type' : 'multipart/form-data' ,* "
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+  next();
+});
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 const connectToDDB = () => {

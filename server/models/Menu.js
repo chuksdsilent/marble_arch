@@ -15,10 +15,6 @@ const MenuSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    department: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true }
 );

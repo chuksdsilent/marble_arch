@@ -2,8 +2,10 @@ import express from "express";
 import {
   create,
   getAllRestaurant,
+  getMenu,
   getMenuRequest,
   updateOrderRequest,
+  updateMenu,
 } from "../controllers/restaurant.js";
 import { verifyKitchenToken, verifyRestaurantToken } from "../verifyToken.js";
 import { addMenuRequestValidator } from "../validators/RestaurantValidator.js";
@@ -23,6 +25,18 @@ router.get(
   verifyRestaurantToken,
   addMenuRequestValidator,
   getMenuRequest
+);
+router.get(
+  "/menu/:menuId",
+  verifyRestaurantToken,
+  addMenuRequestValidator,
+  getMenu
+);
+router.put(
+  "/menu/:menuId",
+  verifyRestaurantToken,
+  addMenuRequestValidator,
+  updateMenu
 );
 // router.put("/update/:id", verifyReceptionistToken,  updateRoomPrice)
 

@@ -9,6 +9,7 @@ import Menu from "../models/Menu.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
 
 export const updateOrderRequest = async (req, res, next) => {
+  console.log("hitted here...");
   try {
     const order = await Restaurant.findOneAndUpdate(
       { _id: req.params.orderId },
@@ -20,6 +21,7 @@ export const updateOrderRequest = async (req, res, next) => {
       .populate("menuId", "name")
       .select("-__v -updatedAt")
       .sort({ createdAt: -1 });
+    console.log("orders ", orders);
     return res.status(200).json(orders);
   } catch (error) {
     next(error);
@@ -36,6 +38,39 @@ export const getMenuRequest = async (req, res, next) => {
     menu = await Restaurant.findById(req.params.menuId).select(
       "-__v -updatedAt"
     );
+
+    return res.status(208).json(menu);
+  } catch (error) {
+    next(error);
+  }
+};
+export const getMenu = async (req, res, next) => {
+  let menu;
+  try {
+    menu = await Menu.findById(req.params.menuId)
+      .select("-__v -updatedAt")
+      .sort({ createdAt: -1 });
+    if (!menu) return res.status(208).json({ msg: "No Menu Found" });
+
+    menu = await Menu.findById(req.params.menuId).select("-__v -updatedAt");
+
+    return res.status(208).json(menu);
+  } catch (error) {
+    next(error);
+  }
+};
+export const updateMenu = async (req, res, next) => {
+  let menu;
+  try {
+    menu = await Menu.findById(req.params.menuId)
+      .select("-__v -updatedAt")
+      .sort({ createdAt: -1 });
+    if (!menu) return res.status(208).json({ msg: "No Menu Found" });
+
+    menu = await Menu.findOneAndUpdate(
+      { _id: req.params.menuId },
+      req.body
+    ).select("-__v -updatedAt");
 
     return res.status(208).json(menu);
   } catch (error) {
