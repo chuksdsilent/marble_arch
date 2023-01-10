@@ -95,6 +95,47 @@ export const getBarOrders = async (req, res, next) => {
   }
 };
 
+export const getBarOrder = async (req, res, next) => {
+  try {
+    const stocks = await Bar.findById(req.params.id)
+      .populate("stockId", "name")
+      .select("-__v -updatedAt")
+      .sort({ x: -1 });
+
+    if (!stocks) return res.status(404).json(stocks);
+
+    return res.status(200).json(stocks);
+  } catch (error) {
+    next(error);
+  }
+};
+export const updateBarOrder = async (req, res, next) => {
+  try {
+    const stocks = await Bar.findById(req.params.id)
+      .populate("stockId", "name")
+      .select("-__v -updatedAt")
+      .sort({ x: -1 });
+
+    if (!stocks) return res.status(404).json(stocks);
+
+    const total = req.body.quantity * req.body.price;
+    const updateStocks = await Bar.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        quantity: req.body.quantity,
+        price: req.body.price,
+        total,
+      },
+      {
+        $new: true,
+      }
+    );
+    return res.status(200).json(stocks);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const create = async (req, res, next) => {
   const error = validationResult(req).formatWith(({ msg }) => msg);
   const trx_id = generateRamdom(30);

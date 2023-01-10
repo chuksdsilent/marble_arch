@@ -7,23 +7,24 @@ const GuestInformationSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-
+    name: {
+      type: String,
+    },
+    categoryTypes: {
+      type: String,
+    },
     surname: {
       type: String,
-      required: true,
     },
     firstName: {
       type: String,
-      required: true,
     },
     gender: {
       type: String,
       enum: ["male", "female"],
-      required: true,
     },
     occupation: {
       type: String,
-      required: true,
     },
     phone: {
       type: Number,

@@ -25,6 +25,7 @@ import {
   searchStockDispatched,
   getStockDispatched,
   stockDispatchedForDepartments,
+  getStockDispatchedForDepartments,
 } from "../controllers/StockDispatch.js";
 import { getExpenses } from "../controllers/expenses.js";
 import { usedStocks } from "../controllers/maintenance.js";
@@ -32,7 +33,12 @@ import {
   getAllRestaurant,
   searchRestaurant,
 } from "../controllers/restaurant.js";
-import { getBarOrders, searchBarOrders } from "../controllers/bar.js";
+import {
+  getBarOrders,
+  getBarOrder,
+  updateBarOrder,
+  searchBarOrders,
+} from "../controllers/bar.js";
 import { laundryUsedStocks } from "../controllers/laundry.js";
 const router = express.Router();
 // router.get("/", verifyManagerToken, getAllRestaurant);
@@ -42,6 +48,8 @@ router.post("/search-restaurant", verifyToken, searchRestaurant);
 router.get("/restaurant", verifyToken, getAllRestaurant);
 router.post("/search-bar", verifyToken, searchBarOrders);
 router.get("/bar", verifyToken, getBarOrders);
+router.put("/bar/:id", verifyToken, updateBarOrder);
+router.get("/bar/:id", verifyToken, getBarOrder);
 router.get("/maintenance", verifyToken, usedStocks);
 router.get("/dashboard", verifyToken, getDashboardData);
 router.get("/get-user", verifyToken, getUser);
@@ -63,6 +71,11 @@ router.get(
   "/stocks-for-department",
   verifyToken,
   stockDispatchedForDepartments
+);
+router.get(
+  "/stocks-for-department/:id",
+  verifyToken,
+  getStockDispatchedForDepartments
 );
 router.get("/expenses", verifyToken, getExpenses);
 

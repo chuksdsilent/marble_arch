@@ -17,6 +17,9 @@ const BookingSchema = new mongoose.Schema(
       ref: "Rooms",
       required: true,
     },
+    categoryType: {
+      type: String,
+    },
     arrivalDate: {
       type: Date,
       required: true,

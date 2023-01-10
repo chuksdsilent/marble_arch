@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyReceptionistToken } from "../verifyToken.js";
+import { verifyReceptionistToken, verifyManagerToken } from "../verifyToken.js";
 import {
   booking,
   transferGuest,
@@ -10,6 +10,8 @@ import {
   searchForGuest,
   freeRooms,
   bookingWithOldGuest,
+  getFreeRooms,
+  updateFreeRooms,
 } from "../controllers/Booking.js";
 import {
   bookingValidator,
@@ -24,9 +26,18 @@ const router = express.Router();
 
 router.get("/all-booking", verifyReceptionistToken, displayAllBooking);
 
-router.get("/booked-rooms", verifyReceptionistToken, bookedRooms);
+router.get(
+  "/booked-rooms",
+  verifyManagerToken,
+  verifyReceptionistToken,
+  bookedRooms
+);
 
-router.get("/free-rooms", verifyReceptionistToken, freeRooms);
+router.get("/free-rooms", freeRooms);
+
+router.get("/free-rooms/:id", getFreeRooms);
+
+router.put("/free-rooms/:id", updateFreeRooms);
 
 router.post("/check-in", verifyReceptionistToken, bookingValidator, booking);
 

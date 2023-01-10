@@ -9,7 +9,6 @@ import Menu from "../models/Menu.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
 
 export const updateOrderRequest = async (req, res, next) => {
-  console.log("hitted here...");
   try {
     const order = await Restaurant.findOneAndUpdate(
       { _id: req.params.orderId },
@@ -23,6 +22,46 @@ export const updateOrderRequest = async (req, res, next) => {
       .sort({ createdAt: -1 });
     console.log("orders ", orders);
     return res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateRestaurantOrderRequest = async (req, res, next) => {
+  console.log("welcome to home in...");
+  try {
+    const order = await Restaurant.findById(req.params.id);
+    if (!order)
+      return res.status(404).json({ msg: "No Restaurant Order Found" });
+
+    const total = req.body.price * req.body.quantity;
+    const orderRequest = await Restaurant.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        name: req.body.name,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        total: total,
+        description: req.body.description,
+      },
+      { $new: true }
+    );
+
+    return res.status(200).json(orderRequest);
+  } catch (error) {
+    next(error);
+  }
+};
+export const getRestaurantOrder = async (req, res, next) => {
+  try {
+    const restaurantOrder = await Restaurant.findById(req.params.id).populate(
+      "menuId"
+    );
+
+    if (!restaurantOrder)
+      return res.status(200).json({ msg: "No Restaurant Order Found" });
+
+    return res.status(200).json(restaurantOrder);
   } catch (error) {
     next(error);
   }
@@ -100,7 +139,7 @@ export const getAllRestaurant = async (req, res, next) => {
 
   try {
     if (req.query.query == "today") {
-      menu = await Restaurant.find({})
+      menu = await Restaurant.find(todayPipeline)
         .populate("menuId", "name")
         .select("-__v -updatedAt")
         .sort({ createdAt: -1 });

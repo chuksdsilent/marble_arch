@@ -15,6 +15,7 @@ export const booking = async (req, res, next) => {
     occupation: req.body.occupation,
     phone: req.body.phone,
     address: req.body.address,
+    name: req.body.name,
     staffId: req.user.id,
   };
 
@@ -25,7 +26,8 @@ export const booking = async (req, res, next) => {
 
   const room = await Rooms.findOne({ _id: req.body.room });
   if (!room) return res.status(404).json({ msg: "Room Not Found." });
-  let total = room.price * daysBtwDate;
+  console.log("days is ", daysBtwDate);
+  let total = room.price * (daysBtwDate - 1);
 
   let booking = {
     roomId: room._id,
@@ -39,6 +41,8 @@ export const booking = async (req, res, next) => {
     price: room.price,
     booked: true,
     paymentMethod: req.body.paymentMethod,
+    categoryType: req.body.setCategoryType,
+
     total,
   };
 
@@ -274,6 +278,27 @@ export const bookedRooms = async (req, res, next) => {
   const all_booking = await Rooms.find({ booked: true }).sort({
     createdAt: -1,
   });
+  return res.status(200).json(all_booking);
+};
+
+export const updateFreeRooms = async (req, res, next) => {
+  const all_booking = await Rooms.findById(req.params.id);
+
+  if (!all_booking) return res.status(200).json({ msg: "Room Not Found..." });
+
+  const booking = await Rooms.findOneAndUpdate(
+    { _id: req.params.id },
+    { price: req.body.price },
+    { $new: true }
+  );
+
+  return res.status(200).json(booking);
+};
+export const getFreeRooms = async (req, res, next) => {
+  const all_booking = await Rooms.findById(req.params.id);
+
+  if (!all_booking) return res.status(200).json({ msg: "Room Not Found..." });
+
   return res.status(200).json(all_booking);
 };
 

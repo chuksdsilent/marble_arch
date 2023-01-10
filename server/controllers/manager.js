@@ -58,6 +58,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "&#8358;",
         url: "/manager/bookings",
+        bgColor: "#009fff",
       },
       {
         title: "Stocks",
@@ -66,6 +67,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "&#8358;",
         url: "/manager/stock-inventory",
+        bgColor: "#1be197",
       },
       {
         title: "Stock Dispatched",
@@ -74,6 +76,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "&#8358;",
         url: "/manager/dispatched-stocks",
+        bgColor: "rgba(242, 94, 94, 0.98)",
       },
       {
         title: "Restaurant",
@@ -82,6 +85,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "&#8358;",
         url: "/manager/restaurant",
+        bgColor: "#4dae93",
       },
       {
         title: "Bar",
@@ -90,15 +94,16 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "&#8358;",
         url: "/manager/bar",
+        bgColor: "#bfe11b",
       },
-      {
-        title: "Laundry",
-        value: todayLaundry[0].total,
-        icon: "bi-calendar-fill",
-        footer: "Today",
-        currency: "&#8358;",
-        url: "/manager/laundry",
-      },
+      // {
+      //   title: "Laundry",
+      //   value: todayLaundry[0].total,
+      //   icon: "bi-calendar-fill",
+      //   footer: "Today",
+      //   currency: "&#8358;",
+      //   url: "/manager/laundry",
+      // },
       // {
       //   title: "Maintenance",
       //   value: todayMaintenance[0].total,
@@ -114,6 +119,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "Today",
         currency: "",
         url: "/manager/guests",
+        bgColor: "#6e96a6",
       },
 
       {
@@ -123,6 +129,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "&#8358;",
         url: "/manager/bookings",
+        bgColor: "#5e4dae8f",
       },
       {
         title: "Stocks",
@@ -131,6 +138,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "&#8358;",
         url: "/manager/stock-inventory",
+        bgColor: "#abae4dad",
       },
       // {
       //   title: "Dispatched Stocks",
@@ -147,6 +155,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "&#8358;",
         url: "/manager/restaurant",
+        bgColor: "#93b9a0",
       },
       {
         title: "Bar",
@@ -155,6 +164,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "&#8358;",
         url: "/manager/bar",
+        bgColor: "#b9a793",
       },
       {
         title: "Maintenance",
@@ -163,23 +173,24 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "&#8358;",
         url: "/manager/maintenance",
+        bgColor: "#8da4bd",
       },
-      {
-        title: "Laundry",
-        value: laundry[0].total,
-        icon: "bi-calendar-fill",
-        footer: "All Time",
-        currency: "&#8358;",
-        url: "/manager/laundry",
-      },
-      {
-        title: "Expenses",
-        value: expenses[0].amount,
-        icon: "bi-bricks",
-        footer: "All Time",
-        currency: "&#8358;",
-        url: "/manager/expenses",
-      },
+      // {
+      //   title: "Laundry",
+      //   value: laundry[0].total,
+      //   icon: "bi-calendar-fill",
+      //   footer: "All Time",
+      //   currency: "&#8358;",
+      //   url: "/manager/laundry",
+      // },
+      // {
+      //   title: "Expenses",
+      //   value: expenses[0].amount,
+      //   icon: "bi-bricks",
+      //   footer: "All Time",
+      //   currency: "&#8358;",
+      //   url: "/manager/expenses",
+      // },
 
       {
         title: "Guests",
@@ -188,6 +199,7 @@ export const getDashboardData = async (req, res, next) => {
         footer: "All Time",
         currency: "",
         url: "/manager/guests",
+        bgColor: "#8da0bd9c",
       },
       {
         title: "Staff",
@@ -195,6 +207,7 @@ export const getDashboardData = async (req, res, next) => {
         icon: "bi-people-fill",
         footer: "All Time",
         currency: "",
+        bgColor: "rgba(156, 215, 115, 0.61)",
       },
     ];
     return res.status(200).json(data);

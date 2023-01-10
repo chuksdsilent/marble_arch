@@ -2,14 +2,10 @@ import validator from "express-validator";
 const { check } = validator;
 
 export const bookingValidator = [
-  check("surname", "Surname is required").exists(),
-  check("firstName", "First Name is required").exists(),
-  check("phone", "Phone Number is not valid. Phone Number must be 11")
-    .exists()
-    .isNumeric(),
-  check("gender", "Gender is required").exists(),
+  // check("phone", "Phone Number is not valid. Phone Number must be 11")
+  //   .exists()
+  //   .isNumeric(),
   check("address", "Address is required").exists(),
-  check("occupation", "Occupation is required").exists(),
   check("arrivalDate", "Arrival Date is required").exists(),
   check("departureDate", "Departure Date is required").exists(),
   check("room", "Room Number is required").exists(),

@@ -1,10 +1,10 @@
 import { createError } from "../error.js";
 import Stocks from "../models/Stocks.js";
+import StockDispatches from "../models/StockDispatch.js";
 import validator from "express-validator";
 const { validationResult } = validator;
 import { generateRamdom } from "../utils/Utils.js";
 import { todayPipeline } from "../GlobalVarialbles.js";
-import StockDispatch from "../models/StockDispatch.js";
 
 export const index = async (req, res, next) => {
   let stocks;
@@ -54,6 +54,45 @@ export const searchStocks = async (req, res, next) => {
       .select("-__v -updatedAt")
       .sort({ createdAt: -1 });
     if (!stocks) return res.status(208).json({ msg: "No Stock Found" });
+
+    return res.status(208).json(stocks);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateStockDispatched = async (req, res, next) => {
+  try {
+    const stocks = await StockDispatches.findById(req.params.id);
+    if (!stocks) return res.status(404).json({ msg: "Stock Not Found" });
+
+    const total = req.body.price * req.body.quantity;
+    console.log("total is ", total);
+    const stockUpdated = await StockDispatches.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          name: req.body.name,
+          quantity: req.body.quantity,
+          price: req.body.price,
+          total: total,
+        },
+      },
+      {
+        upset: true,
+      }
+    );
+    return res.status(208).json(stockUpdated);
+  } catch (error) {
+    next(error);
+  }
+};
+export const getStockDispatched = async (req, res, next) => {
+  try {
+    const stocks = await StockDispatches.findById(req.params.id).populate(
+      "stockId"
+    );
+    if (!stocks) return res.status(404).json({ msg: "Stock Not Found" });
 
     return res.status(208).json(stocks);
   } catch (error) {
@@ -111,6 +150,7 @@ export const create = async (req, res, next) => {
   }
 };
 
+export const updateStock = async (req, res, next) => {};
 export const update = async (req, res, next) => {
   const error = validationResult(req).formatWith(({ msg }) => msg);
 
@@ -122,6 +162,7 @@ export const update = async (req, res, next) => {
     const stock = await Stocks.findById(req.params.id);
     if (!stock) return res.status(404).json({ msg: "Stock Not Found" });
 
+    const total = req.body.price * req.body.quantity;
     const updatedStock = await Stocks.findOneAndUpdate(
       {
         _id: req.params.id,
@@ -130,6 +171,7 @@ export const update = async (req, res, next) => {
         name: req.body.name,
         quantity: req.body.quantity,
         price: req.body.price,
+        total: total,
         description: req.body.description,
       },
       {

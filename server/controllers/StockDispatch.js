@@ -28,6 +28,7 @@ export const stockDispatched = async (req, res, next) => {
   try {
     let stockDispatched;
     if (req.query.query && req.query.query === "today") {
+      console.log("started...");
       stockDispatched = await StockDispatches.find(todayPipeline)
         .populate("stockId")
         .populate("staffId")
@@ -47,6 +48,17 @@ export const stockDispatched = async (req, res, next) => {
   }
 };
 
+export const getStockDispatchedForDepartments = async (req, res, next) => {
+  try {
+    const stockDispatched = await StockDispatches.find({
+      _id: req.params.id,
+    });
+
+    return res.status(200).json(stockDispatched);
+  } catch (error) {
+    next(error);
+  }
+};
 export const stockDispatchedForDepartments = async (req, res, next) => {
   try {
     const stockDispatched = await StockDispatches.find({
