@@ -4,8 +4,6 @@ start.setHours(0, 0, 0, 0);
 let end = new Date();
 end.setHours(23, 59, 59, 999);
 
-var now = new Date();
-var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 export const pipeline = [
   {
     $match: {
@@ -32,6 +30,8 @@ export const allPipeline = [
   },
 ];
 
+var now = new Date();
+var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 export const todayPipeline = {
   created_on: { $gte: startOfToday },
 };
