@@ -60,6 +60,7 @@ const BookingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    created: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

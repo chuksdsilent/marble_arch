@@ -25,6 +25,7 @@ const RoomsSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    created: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

@@ -44,6 +44,7 @@ const RestaurantSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
+    created: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
