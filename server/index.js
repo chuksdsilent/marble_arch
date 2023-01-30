@@ -23,7 +23,7 @@ import * as path from "path";
 import url from "url";
 
 const app = express();
-const port = 7500;
+const port = process.env.PORT || 7500;
 let url_prefix = "";
 const baseUrl = "/api";
 
@@ -107,19 +107,19 @@ app.use(`${baseUrl}/`, kitchenRoutes);
 
 app.use(`/api/expenses`, expensesRoutes);
 
-console.log("env ", process.env.NODE_ENV);
+// console.log("env ", process.env.NODE_ENV);
 // Serve frontend
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, "../", "frontend", "build", "index.html")
-    )
-  );
-} else {
-  app.get("/", (req, res) => res.send("Please set to production"));
-}
+//   app.get("*", (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, "../", "frontend", "build", "index.html")
+//     )
+//   );
+// } else {
+//   app.get("/", (req, res) => res.send("Please set to production"));
+// }
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
