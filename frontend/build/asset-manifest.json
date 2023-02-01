@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/static/css/main.a2bbb559.chunk.css",
-    "main.js": "/static/js/main.70dbfe2a.chunk.js",
-    "main.js.map": "/static/js/main.70dbfe2a.chunk.js.map",
+    "main.js": "/static/js/main.e612fd34.chunk.js",
+    "main.js.map": "/static/js/main.e612fd34.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8f53bee3.js",
     "runtime-main.js.map": "/static/js/runtime-main.8f53bee3.js.map",
     "static/css/2.1769a866.chunk.css": "/static/css/2.1769a866.chunk.css",
-    "static/js/2.e167bded.chunk.js": "/static/js/2.e167bded.chunk.js",
-    "static/js/2.e167bded.chunk.js.map": "/static/js/2.e167bded.chunk.js.map",
+    "static/js/2.f1cf2598.chunk.js": "/static/js/2.f1cf2598.chunk.js",
+    "static/js/2.f1cf2598.chunk.js.map": "/static/js/2.f1cf2598.chunk.js.map",
     "static/js/3.700f754d.chunk.js": "/static/js/3.700f754d.chunk.js",
     "static/js/3.700f754d.chunk.js.map": "/static/js/3.700f754d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.819b9cd4415a20a6dd94f110f12bd3af.js": "/precache-manifest.819b9cd4415a20a6dd94f110f12bd3af.js",
+    "precache-manifest.d288bef543458c28079648ac8b6d5ee4.js": "/precache-manifest.d288bef543458c28079648ac8b6d5ee4.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.1769a866.chunk.css.map": "/static/css/2.1769a866.chunk.css.map",
     "static/css/main.a2bbb559.chunk.css.map": "/static/css/main.a2bbb559.chunk.css.map",
-    "static/js/2.e167bded.chunk.js.LICENSE.txt": "/static/js/2.e167bded.chunk.js.LICENSE.txt",
-    "static/js/main.70dbfe2a.chunk.js.LICENSE.txt": "/static/js/main.70dbfe2a.chunk.js.LICENSE.txt",
+    "static/js/2.f1cf2598.chunk.js.LICENSE.txt": "/static/js/2.f1cf2598.chunk.js.LICENSE.txt",
+    "static/js/main.e612fd34.chunk.js.LICENSE.txt": "/static/js/main.e612fd34.chunk.js.LICENSE.txt",
     "static/media/bar.jpg": "/static/media/bar.3f792922.jpg",
     "static/media/kitchen.jpg": "/static/media/kitchen.19cfbdad.jpg",
     "static/media/laundry.jpg": "/static/media/laundry.bf5c2dda.jpg",
@@ -29,8 +29,8 @@
   "entrypoints": [
     "static/js/runtime-main.8f53bee3.js",
     "static/css/2.1769a866.chunk.css",
-    "static/js/2.e167bded.chunk.js",
+    "static/js/2.f1cf2598.chunk.js",
     "static/css/main.a2bbb559.chunk.css",
-    "static/js/main.70dbfe2a.chunk.js"
+    "static/js/main.e612fd34.chunk.js"
   ]
 }
