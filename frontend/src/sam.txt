@@ -1,0 +1,11 @@
+
+{
+  "title": "Maintenance",
+  "icon": "bi-building-fill-gear",
+  "path": "/manager/maintenance"
+},
+{
+  "title": "Laundry",
+  "icon": "bi-calendar-fill",
+  "path": "/manager/laundry"
+},
