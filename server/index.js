@@ -23,7 +23,7 @@ import * as path from "path";
 import url from "url";
 
 const app = express();
-const port = process.env.PORT || 7500;
+const port = 7500;
 let url_prefix = "";
 const baseUrl = "/api";
 
