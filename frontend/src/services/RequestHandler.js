@@ -3,7 +3,9 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_DEV_BASE_URL;
 const PHOTO_URL = process.env.REACT_APP_PHOTO_URL;
 
+console.log("url is ", BASE_URL)
 const post = (path, data) => {
+  
   const new_url = `${BASE_URL}${path}`;
   // const new_url = `${path}`;
   return axios.post(new_url, data || {});

@@ -1,23 +1,56 @@
-version: "3"
-
 services:
   front-end:
     container_name: frontend
-    image: marble-arch-frontend
-    build: ./my-app
+    build:
+      context: ./my-app
     stdin_open: true
     ports:
-      - 3000:80
+      - 3010:3000
     networks:
       - marble-arch
     depends_on:
       - backend
+
   backend:
-    image: backend
-    build: ./server
+    build:
+      context: ./server
     ports:
       - 7500:7500
     networks:
       - marble-arch
+    depends_on:
+      - mongo
+      - mongo-express
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: marble_arch
+    networks:
+      - marble-arch
+    volumes:
+      - ./:/etc/mongo
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_BASICAUTH: false
+    networks:
+      - marble-arch
+    depends_on:
+      - mongo
+      
 networks:
   marble-arch: {}
+
+volumes:
+  mongo-db-data: null

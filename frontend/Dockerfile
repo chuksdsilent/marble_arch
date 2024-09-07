@@ -1,15 +1,22 @@
-#Stage 1
-FROM node:17-alpine as builder
+# Dockerfile for React app
+FROM node:17-alpine
+
+# Set the working directory
 WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+
+# Install dependencies
+COPY package.json  ./
+RUN npm install
+
+# Copy the rest of the application code
 COPY . .
+
+# Build the React app
 RUN npm run build
 
-#Stage 2
-FROM nginx:1.19.0
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/build .
-ENTRYPOINT ["nginx","-g","daemon off;"]
+# Serve the static files
+RUN npm install -g serve
+CMD ["serve", "-s", "build"]
+
+# Expose the port
+EXPOSE 5000
